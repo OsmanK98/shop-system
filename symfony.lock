@@ -23,6 +23,9 @@
     "doctrine/common": {
         "version": "3.1.2"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.5.0"
+    },
     "doctrine/dbal": {
         "version": "2.13.1"
     },
@@ -43,6 +46,18 @@
             "config/packages/test/doctrine.yaml",
             "src/Entity/.gitignore",
             "src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "e5b542d4ef47d8a003c91beb35650c76907f7e53"
+        },
+        "files": [
+            "src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -123,6 +138,18 @@
         "files": [
             "config/packages/nelmio_api_doc.yaml",
             "config/routes/nelmio_api_doc.yaml"
+        ]
+    },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
         ]
     },
     "nikic/php-parser": {
@@ -352,7 +379,28 @@
     "symfony/runtime": {
         "version": "v5.3.0"
     },
+    "symfony/security-bundle": {
+        "version": "5.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "8b35bfc00a7716db4ca5a764a4b338476ca3a704"
+        },
+        "files": [
+            "config/packages/security.yaml"
+        ]
+    },
     "symfony/security-core": {
+        "version": "v5.3.1"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.3.0"
+    },
+    "symfony/security-guard": {
+        "version": "v5.3.0"
+    },
+    "symfony/security-http": {
         "version": "v5.3.1"
     },
     "symfony/serializer": {
