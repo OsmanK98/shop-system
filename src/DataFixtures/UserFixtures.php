@@ -22,8 +22,8 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setName("Jan");
         $user->setSurname("Kowalski");
-        $user->setEmail("user@example.com");
-        $encodedPassword = $this->encoder->encodePassword($user, "user-jan");
+        $user->setEmail("kowalski@gmail.com");
+        $encodedPassword = $this->encoder->encodePassword($user, "12345678");
         $user->setPassword($encodedPassword);
         $user->setRoles(array('ROLE_USER'));
         $user->setPhone("412412222");
@@ -33,8 +33,8 @@ class UserFixtures extends Fixture
         $admin = new User();
         $admin->setName("Jakub");
         $admin->setSurname("Nowak");
-        $admin->setEmail("admin@example.com");
-        $encodedPassword = $this->encoder->encodePassword($admin, "admin-jakub");
+        $admin->setEmail("nowak@gmail.com");
+        $encodedPassword = $this->encoder->encodePassword($admin, "12345678");
         $admin->setPassword($encodedPassword);
         $admin->setRoles(array('ROLE_ADMIN'));
         $admin->setPhone("124211423");

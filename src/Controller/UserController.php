@@ -15,7 +15,7 @@ use Swagger\Annotations as SWG;
 class UserController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Get("/user/{id}")
+     * @Rest\Get("/users/{id}")
      * @param User $user
      * @return View
      * @SWG\Get(
@@ -53,10 +53,8 @@ class UserController extends AbstractFOSRestController
      *         description="User not found",
      *     )
      */
-    public function details(User $user)
+    public function show(User $user): View
     {
-        $this->denyAccessUnlessGranted('USER_VIEW', $user);
         return $this->view($user, Response::HTTP_OK);
     }
-
 }

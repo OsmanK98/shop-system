@@ -9,6 +9,35 @@ nelmio_api_doc:
                 description: 'Authorization: Bearer {jwt}'
                 name: Authorization
                 in: header
+        paths:
+            /api/login_check:
+                post:
+                    tags:
+                        - Login
+                    description: Login into the api.
+                    produces:
+                        - application/json
+                    parameters:
+                        - name: user
+                          description: User to login
+                          in: body
+                          required: true
+                          schema:
+                              type: object
+                              properties:
+                                  username:
+                                      type: string
+                                  password:
+                                      type: string
+                    responses:
+                        '200':
+                            description: Login successful
+                            schema:
+                                type: object
+                                properties:
+                                    token:
+                                        type: string
+
         security:
             - Bearer: []
     areas: # to filter documented areas
