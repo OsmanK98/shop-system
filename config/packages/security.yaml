@@ -11,6 +11,10 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        public:
+            methods: [ GET ]
+            pattern: ^/api/products
+            security: false
         login:
             pattern: ^/api/login
             stateless: true
