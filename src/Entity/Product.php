@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Product
 {
-    const PAGINATE_DEFAULT_LIMIT=10;
+    const PAGINATE_DEFAULT_LIMIT = 10;
 
     /**
      * @ORM\Id
@@ -47,6 +47,14 @@ class Product
      * @ORM\Column(type="text", nullable=true)
      */
     private $photoUrl;
+
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="Please enter price")
+     */
+    private $price;
+
 
     public function getId(): ?int
     {
@@ -109,6 +117,18 @@ class Product
     public function setPhotoUrl(?string $photoUrl): self
     {
         $this->photoUrl = $photoUrl;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
