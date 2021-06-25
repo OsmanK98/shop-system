@@ -56,6 +56,30 @@ class ProductController extends AbstractFOSRestController
     }
 
     /**
+     * @Rest\Get("/products/{id}")
+     * @SWG\Get(
+     *     summary="Show product",
+     *     tags={"Product"},
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         description="Product ID"
+     *          )
+     *      )
+     *      @SWG\Response(
+     *         response=200,
+     *         description="Return product")
+     * )
+     */
+    public function show(Product $product): View
+    {
+        return $this->view($product, Response::HTTP_OK);
+    }
+
+    /**
      * @Rest\Post("/products")
      * @param Request $request
      * @return View

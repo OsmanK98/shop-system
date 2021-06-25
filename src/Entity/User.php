@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -63,6 +65,16 @@ class User implements UserInterface
      * @Assert\NotBlank(message="Please enter phone number")
      */
     private string $phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ShoppingCartDetails::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $shoppingCartDetails;
+
+    public function __construct()
+    {
+        $this->shoppingCartDetails = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -181,5 +193,35 @@ class User implements UserInterface
     public function setPhone(string $phone): void
     {
         $this->phone = $phone;
+    }
+
+    /**
+     * @return Collection|ShoppingCartDetails[]
+     */
+    public function getShoppingCartDetails(): Collection
+    {
+        return $this->shoppingCartDetails;
+    }
+
+    public function addShoppingCartDetail(ShoppingCartDetails $shoppingCartDetail): self
+    {
+        if (!$this->shoppingCartDetails->contains($shoppingCartDetail)) {
+            $this->shoppingCartDetails[] = $shoppingCartDetail;
+            $shoppingCartDetail->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShoppingCartDetail(ShoppingCartDetails $shoppingCartDetail): self
+    {
+        if ($this->shoppingCartDetails->removeElement($shoppingCartDetail)) {
+            // set the owning side to null (unless already changed)
+            if ($shoppingCartDetail->getUser() === $this) {
+                $shoppingCartDetail->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

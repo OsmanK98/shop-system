@@ -6,7 +6,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class HandleError
 {
-    static function format(ConstraintViolationListInterface $errors): array
+    public function format(ConstraintViolationListInterface $errors): array
     {
         $validationError = [];
         foreach ($errors as $error) {
