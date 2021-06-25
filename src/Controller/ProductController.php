@@ -114,8 +114,8 @@ class ProductController extends AbstractFOSRestController
      *   )
      * )
      * @SWG\Response(
-     *         response=200,
-     *         description="Returns new product id",
+     *         response=204,
+     *         description="Product was created",
      *     @SWG\Schema(
      *     @SWG\Property(property="product_id", type="integer", example="1"),
      * )

@@ -31,7 +31,7 @@ class CreateProductService
         $productData = json_decode($request->getContent(), true);
         $product = $this->prepareProductObject($productData);
 
-        if (!$errors = $this->isValidated($product)) {
+        if (!$errors = $this->handleError->isValidatedObject($product)) {
             return $errors;
         }
 
@@ -49,14 +49,5 @@ class CreateProductService
         $product->setPhotoUrl($productData['photo_url']);
         $product->setPrice($productData['price']);
         return $product;
-    }
-
-    private function isValidated($product)
-    {
-        $errors = $this->validator->validate($product);
-        if ($errors->count() > 0) {
-            return $this->handleError->format($errors);
-        }
-        return true;
     }
 }
