@@ -32,11 +32,11 @@ class AddProductToShoppingCartService extends AbstractFOSRestController
             throw new Exception("The input data is invalid");
         }
         if ($this->isProductExistInShoppingCart()) {
-            $shoppingCart = $this->updateShoppingCartObject();
+            $this->updateShoppingCartObject();
         } else {
-            $shoppingCart = $this->prepareShoppingCartObject();
+            $this->prepareShoppingCartObject();
         }
-        $this->shoppingCartDetailsRepository->save($shoppingCart);
+        $this->shoppingCartDetailsRepository->save($this->shoppingCartDetails);
     }
 
     private function isRequestValidated(array $request): bool
@@ -66,16 +66,15 @@ class AddProductToShoppingCartService extends AbstractFOSRestController
         return $this->shoppingCartDetails instanceof ShoppingCartDetails;
     }
 
-    private function prepareShoppingCartObject(): ShoppingCartDetails
+    private function prepareShoppingCartObject(): void
     {
-        return new ShoppingCartDetails($this->getUser(), $this->product, $this->quantity);
+        $this->shoppingCartDetails = new ShoppingCartDetails($this->getUser(), $this->product, $this->quantity);
     }
 
-    private function updateShoppingCartObject(): ?ShoppingCartDetails
+    private function updateShoppingCartObject(): void
     {
         $sumQuantity = $this->quantity + $this->shoppingCartDetails->getQuantity();
         $this->isQuantityAvailable($sumQuantity);
         $this->shoppingCartDetails->setQuantity($this->quantity);
-        return $this->shoppingCartDetails;
     }
 }
