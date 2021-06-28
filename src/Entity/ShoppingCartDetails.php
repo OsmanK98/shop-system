@@ -34,6 +34,13 @@ class ShoppingCartDetails
      */
     private $quantity;
 
+    public function __construct(User $user, Product $product, Int $quantity)
+    {
+        $this->user = $user;
+        $this->product = $product;
+        $this->quantity = $quantity;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

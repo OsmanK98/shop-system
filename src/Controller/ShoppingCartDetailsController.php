@@ -67,14 +67,9 @@ class ShoppingCartDetailsController extends AbstractFOSRestController
      *         description="Expired JWT Token | JWT Token not found | Invalid JWT Token",
      *     )
      */
-    public function add(Request $request): View
+    public function add(Request $request): Void
     {
         $product = json_decode($request->getContent(), true);
-        $shoppingCartDetails = $this->addProductToShoppingCartService->execute($product);
-        if ($shoppingCartDetails instanceof ShoppingCartDetails) {
-            return $this->view(['Product added to shopping cart'], Response::HTTP_OK);
-        }
-        return $this->view(['error' => $shoppingCartDetails], Response::HTTP_BAD_REQUEST);
+        $this->addProductToShoppingCartService->execute($product);
     }
-
 }
